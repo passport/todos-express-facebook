@@ -75,7 +75,7 @@ app.get('/login',
   });
 
 app.get('/login/facebook',
-  passport.authenticate('dropbox'));
+  passport.authenticate('facebook'));
 
 app.get('/login/facebook/return', 
   passport.authenticate('facebook', { failureRedirect: '/login' }),
