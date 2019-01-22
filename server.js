@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express = require('express');
 var passport = require('passport');
 var Strategy = require('passport-facebook').Strategy;
@@ -11,9 +13,9 @@ var Strategy = require('passport-facebook').Strategy;
 // with a user object, which will be set at `req.user` in route handlers after
 // authentication.
 passport.use(new Strategy({
-    clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: 'http://localhost:3000/login/facebook/return'
+    clientID: process.env['FACEBOOK_CLIENT_ID'],
+    clientSecret: process.env['FACEBOOK_CLIENT_SECRET'],
+    callbackURL: '/return'
   },
   function(accessToken, refreshToken, profile, cb) {
     // In this example, the user's Facebook profile is supplied as the user
@@ -77,7 +79,7 @@ app.get('/login',
 app.get('/login/facebook',
   passport.authenticate('facebook'));
 
-app.get('/login/facebook/return', 
+app.get('/return', 
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
@@ -89,4 +91,4 @@ app.get('/profile',
     res.render('profile', { user: req.user });
   });
 
-app.listen(3000);
+app.listen(process.env['PORT'] || 8080);
