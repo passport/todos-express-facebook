@@ -18,10 +18,10 @@ consumer secret needed to access Facebook's API.  Start the server with those
 variables set to the appropriate credentials.
 
 ```bash
-$ CLIENT_ID=__FACEBOOK_CLIENT_ID__ CLIENT_SECRET=__FACEBOOK_CLIENT_SECRET__ node server.js
+$ FACEBOOK_CLIENT_ID=__FACEBOOK_CLIENT_ID__ && export FACEBOOK_CLIENT_SECRET=__FACEBOOK_CLIENT_SECRET__ && node server.js
 ```
 
-Open a web browser and navigate to [http://localhost:3000/](http://localhost:3000/)
+Open a web browser and navigate to [http://localhost:8080/](http://localhost:8080/)
 to see the example in action.
 
 <a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/vK9dyjRnnWsMzzJTQ57fRJpH/passport/express-4.x-facebook-example'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/vK9dyjRnnWsMzzJTQ57fRJpH/passport/express-4.x-facebook-example.svg' /></a>
