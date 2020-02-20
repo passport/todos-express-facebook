@@ -21,7 +21,7 @@ variables set to the appropriate credentials.
 $ CLIENT_ID=__FACEBOOK_CLIENT_ID__ CLIENT_SECRET=__FACEBOOK_CLIENT_SECRET__ node server.js
 ```
 
-Open a web browser and navigate to [http://localhost:3000/](http://localhost:3000/)
+Open a web browser and navigate to [http://localhost:8080/](http://localhost:8080/)
 to see the example in action.
 
 
