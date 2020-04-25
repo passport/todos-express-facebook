@@ -1,21 +1,21 @@
 {
-  "name": "express-4.x-facebook-example",
+  "name": "express-4.x-google-oauth2.0-example",
   "version": "0.0.0",
-  "description": "Express 4.x app using Passport for authentication with Facebook.",
+  "description": "Express 4.x app using Passport for authentication with Google Oauth2.0.",
   "keywords": [
     "example",
     "express",
     "passport"
   ],
-  "author": "Jared Hanson",
+  "author": "Verity Missed",
   "license": "Unlicense",
-  "homepage": "https://github.com/passport/express-4.x-facebook-example",
+  "homepage": "https://github.com/veritymissed/express-4.x-google-oauth2.0-example",
   "repository": {
     "type": "git",
-    "url": "git://github.com/passport/express-4.x-facebook-example.git"
+    "url": "git@github.com:veritymissed/express-4.x-google-oauth2.0-example.git"
   },
   "bugs": {
-    "url": "https://github.com/passport/express-4.x-facebook-example/issues"
+    "url": "https://github.com/passport/express-4.x-google-oauth2.0-example/issues"
   },
   "dependencies": {
     "body-parser": "^1.13.2",
@@ -27,6 +27,6 @@
     "express-session": "^1.11.3",
     "morgan": "^1.6.1",
     "passport": "^0.4.0",
-    "passport-facebook": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0"
   }
 }
