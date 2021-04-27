@@ -18,7 +18,7 @@ consumer secret needed to access Facebook's API.  Start the server with those
 variables set to the appropriate credentials.
 
 ```bash
-$ export FACEBOOK_CLIENT_ID=__FACEBOOK_CLIENT_ID__ && export FACEBOOK_CLIENT_SECRET=__FACEBOOK_CLIENT_SECRET__ && node server.js
+$ FACEBOOK_CLIENT_ID=__FACEBOOK_CLIENT_ID__ FACEBOOK_CLIENT_SECRET=__FACEBOOK_CLIENT_SECRET__ node server.js
 ```
 
 Open a web browser and navigate to [http://localhost:8080/](http://localhost:8080/)
