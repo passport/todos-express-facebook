@@ -4,6 +4,8 @@ var path = require('path');
 var express = require('express');
 var passport = require('passport');
 
+var authRouter = require('./routes/auth');
+
 
 // Create a new Express application.
 var app = express();
@@ -34,19 +36,7 @@ app.get('/',
     res.render('home', { user: req.user });
   });
 
-app.get('/login',
-  function(req, res){
-    res.render('login');
-  });
-
-app.get('/login/facebook',
-  passport.authenticate('facebook'));
-
-app.get('/return', 
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/');
-  });
+app.use('/', authRouter);
 
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
