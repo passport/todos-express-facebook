@@ -6,6 +6,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 
 var app = express();
@@ -32,13 +33,7 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: false, save
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-// Define routes.
-app.get('/',
-  function(req, res) {
-    res.render('home', { user: req.user });
-  });
-
+app.use('/', indexRouter);
 app.use('/', authRouter);
 
 app.get('/profile',
