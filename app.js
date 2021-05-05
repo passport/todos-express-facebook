@@ -44,4 +44,4 @@ app.get('/profile',
     res.render('profile', { user: req.user });
   });
 
-app.listen(process.env['PORT'] || 8080);
+module.exports = app;
