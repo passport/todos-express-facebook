@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // This sequence of middleware is necessary for login sessions.  The first
 // middleware loads session data and makes it available at `req.session`.  The
 // next lines initialize Passport and authenticate the request based on session
-// data.  If session data contains an authenticated user, the user is set at
+// data.  If session data contains a logged in user, the user is set at
 // `req.user`.
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
