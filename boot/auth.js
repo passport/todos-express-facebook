@@ -1,5 +1,5 @@
 var passport = require('passport');
-var Strategy = require('passport-facebook').Strategy;
+var Strategy = require('passport-facebook');
 
 
 module.exports = function() {

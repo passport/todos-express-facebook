@@ -30,6 +30,7 @@
     "express-session": "^1.11.3",
     "morgan": "^1.6.1",
     "passport": "^0.4.0",
-    "passport-facebook": "^2.0.0"
+    "passport-facebook": "^2.0.0",
+    "sqlite3": "^5.0.2"
   }
 }

@@ -12,6 +12,7 @@ var myaccountRouter = require('./routes/myaccount');
 
 var app = express();
 
+require('./boot/db')();
 require('./boot/auth')();
 
 // view engine setup
