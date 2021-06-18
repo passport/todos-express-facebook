@@ -1,7 +1,7 @@
 {
   "name": "express-4.x-facebook-example",
   "version": "0.0.0",
-  "description": "Express 4.x app using Passport for authentication with Facebook.",
+  "description": "Express 4.x app using Passport for login with Facebook.",
   "keywords": [
     "example",
     "express",
