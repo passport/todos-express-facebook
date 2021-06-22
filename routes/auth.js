@@ -10,7 +10,7 @@ router.get('/login', function(req, res, next) {
 
 router.get('/login/facebook', passport.authenticate('facebook'));
 
-router.get('/return', 
+router.get('/oauth2/redirect/www.facebook.com',
   passport.authenticate('facebook', { assignProperty: 'federatedUser', failureRedirect: '/login' }),
   function(req, res, next) {
     db.get('SELECT * FROM federated_credentials WHERE provider = ? AND subject = ?', [
