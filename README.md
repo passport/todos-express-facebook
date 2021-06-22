@@ -62,13 +62,17 @@ Added to the scaffolding are files which add authentication to the application.
 
 * [`boot/auth.js`](boot/auth.js)
 
-  This file initializes Passport.  It configures the Facebook strategy and supplies
-  the serialization functions used for session management. 
+  This file initializes Passport.  It configures the Facebook strategy and
+  supplies the serialization functions used for session management.
 
 * [`routes/auth.js`](routes/auth.js)
 
-  This file defines the routes used for authentication.  In particular, there are
-  two routes used to authenticate with Google:
+  This file defines the routes used for authentication.  In particular, there
+  are three routes used to authenticate with Facebook:
+  
+  - `GET /login`
+  
+    This route renders a page that prompts the user login with Facebook.
   
   - `GET /login/federated/www.facebook.com`
   
@@ -77,10 +81,10 @@ Added to the scaffolding are files which add authentication to the application.
   
   - `POST /oauth2/redirect/www.facebook.com`
   
-  This route completes the authentication sequence when Facebook redirects the
-  user back to the application.  When a new user logs in, a user account is
-  automatically created and their Facebook account is linked.  When an existing
-  user returns, they are logged in to their linked account.
+    This route completes the authentication sequence when Facebook redirects the
+    user back to the application.  When a new user logs in, a user account is
+    automatically created and their Facebook account is linked.  When an
+    existing user returns, they are logged in to their linked account.
 
 ## License
 
