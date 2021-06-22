@@ -72,8 +72,8 @@ Added to the scaffolding are files which add authentication to the application.
   
   - `GET /login/federated/www.facebook.com`
   
-  This route begins the authentication sequence by redirecting the user to
-  Facebook.
+    This route begins the authentication sequence by redirecting the user to
+    Facebook.
   
   - `POST /oauth2/redirect/www.facebook.com`
   
