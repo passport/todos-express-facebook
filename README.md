@@ -72,7 +72,7 @@ Added to the scaffolding are files which add authentication to the application.
   
   - `GET /login`
   
-    This route renders a page that prompts the user login with Facebook.
+    This route renders a page that prompts the user to login with Facebook.
   
   - `GET /login/federated/www.facebook.com`
   
