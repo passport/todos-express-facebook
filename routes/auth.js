@@ -8,7 +8,7 @@ router.get('/login', function(req, res, next) {
   res.render('login');
 });
 
-router.get('/login/facebook', passport.authenticate('facebook'));
+router.get('/login/federated/www.facebook.com', passport.authenticate('facebook'));
 
 router.get('/oauth2/redirect/www.facebook.com',
   passport.authenticate('facebook', { assignProperty: 'federatedUser', failureRedirect: '/login' }),
