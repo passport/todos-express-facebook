@@ -14,7 +14,8 @@ module.exports = function() {
   passport.use(new Strategy({
       clientID: process.env['FACEBOOK_CLIENT_ID'],
       clientSecret: process.env['FACEBOOK_CLIENT_SECRET'],
-      callbackURL: '/oauth2/redirect/www.facebook.com'
+      callbackURL: '/oauth2/redirect/www.facebook.com',
+      state: true
     },
     function(accessToken, refreshToken, profile, cb) {
       // In this example, the user's Facebook profile is supplied as the user
