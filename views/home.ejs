@@ -6,20 +6,17 @@
 		<title>Express • TodoMVC</title>
 		<link rel="stylesheet" href="/css/base.css">
 		<link rel="stylesheet" href="/css/index.css">
-		<link rel="stylesheet" href="/css/login.css">
+		<link rel="stylesheet" href="/css/home.css">
 	</head>
 	<body>
-		<section class="prompt">
-			<h3>todos</h3>
-			<h1>Sign in</h1>
-			<% if (hasMessages) { %>
-			<section class="messages">
-				<% messages.forEach(function(message) { %>
-				<p><%= message %></p>
-				<% }); %>
+		<section class="todohome">
+			<header>
+				<h1>todos</h1>
+			</header>
+			<section>
+				<h2>todos helps you get things done</h2>
+				<a class="button" href="/login">Sign in</a>
 			</section>
-			<% } %>
-			<a class="button google" href="/login/federated/google">Sign in with Google</a>
 		</section>
 		<footer class="info">
 			<p>Created by <a href="https://www.jaredhanson.me">Jared Hanson</a></p>

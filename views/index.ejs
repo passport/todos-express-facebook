@@ -1,83 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
-    <link rel="stylesheet" href="/stylesheets/pico.css">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <title>Todos</title>
-    
-    <style>
-      /* Global CSS variables */
-      :root {
-        --spacing: 3rem;
-        --text-weight: 400;
-        --titles-weight: 800;
-        --block-round: 0;
-      }
-
-      /* Typography */
-      h2, h3, hgroup>:last-child {
-        font-weight: 200;
-      }
-      small {
-        color: var(--muted-text);
-      }
-
-      /* Header */
-      
-      
-      
-      
-      
-      :root:not([data-theme=dark]), [data-theme=light] {
-          --nav-background: rgba(255, 255, 255, 0.7);
-          --nav-border: rgba(115, 130, 140, 0.2);
-      }
-
-      [data-theme=dark] {
-          --nav-background: rgba(16, 24, 30, 0.8);
-          --nav-border: rgba(115, 130, 140, 0.2);
-      }
-    </style>
-  </head>
-
-  <body>
-    <%- include('header'); -%>
-    
-    <div class="hero">
-      <header class="container">
-        <hgroup>
-          <h1>Hello</h1>
-          <h2>Lorem ipsum dolor sit amet</h2>
-        </hgroup>
-        <p><a href="/login" role="button">Sign in</a></p>
-      </header>
-    </div>
-    
-    <main class="container">
-      
-      
-      <section>
-        <div class="grid">
-          <div>
-            <h4>Donec sit amet</h4>
-            <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra.</p>
-          </div>
-          <div>
-            <h4>Suspendisse potenti</h4>
-            <p>Proin non condimentum tortor. Donec in feugiat sapien.</p>
-          </div>
-          <div>
-            <h4>Nulla augue metus</h4>
-            <p>Pacilisis sed ante ut, posuere volutpat quam. Maecenas maximus blandit mi ac finibus.</p>
-          </div>
-        </div>
-      </section>
-    </main>
-    
-    <footer class="container">
-      <small>A <a href="https://www.passportjs.org/">Passport.js</a> example • <a href="https://github.com/passport/express-4.x-facebook-example">Source code</a></small>
-    </footer>
-  </body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Express • TodoMVC</title>
+		<link rel="stylesheet" href="/css/base.css">
+		<link rel="stylesheet" href="/css/index.css">
+		<link rel="stylesheet" href="/css/app.css">
+	</head>
+	<body>
+		<section class="todoapp">
+			<nav class="nav">
+				<ul>
+					<li class="user"><%= user.name || user.username %></li>
+					<li>
+						<form action="/logout" method="post">
+							<button class="logout" type="submit">Sign out</button>
+							<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+						</form>
+					</li>
+				</ul>
+			</nav>
+			<header class="header">
+				<h1>todos</h1>
+				<form action="/" method="post">
+					<input class="new-todo" name="title" placeholder="What needs to be done?" autofocus>
+					<% if (filter) { %>
+					<input type="hidden" name="filter" value="<%= filter %>"/>
+					<% } %>
+					<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+				</form>
+			</header>
+			<% if (activeCount + completedCount > 0) { %>
+			<section class="main">
+				<form action="/toggle-all" method="post">
+					<input id="toggle-all" class="toggle-all" type="checkbox" name="completed" <%- activeCount == 0 ? 'checked' : '' %> onchange="this.form.submit();">
+					<label for="toggle-all">Mark all as complete</label>
+					<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+				</form>
+				<ul class="todo-list">
+					<% todos.forEach(function(todo) { %>
+					<li <%- todo.completed ? 'class="completed"' : '' %>>
+						<form action="<%= todo.url %>" method="post">
+							<div class="view">
+								<input class="toggle" type="checkbox" name="completed" <%- todo.completed ? 'checked' : '' %> onchange="this.form.submit();">
+								<label ondblclick="this.closest('li').className = this.closest('li').className + ' editing'; this.closest('li').querySelector('input.edit').focus(); this.closest('li').querySelector('input.edit').value = ''; this.closest('li').querySelector('input.edit').value = '<%= todo.title %>';"><%= todo.title %></label>
+								<button class="destroy" form="delete-<%= todo.id %>"></button>
+							</div>
+							<input class="edit" name="title" value="<%= todo.title %>" onkeyup="if (event.keyCode == 27) { this.setAttribute('data-esc', ''); this.closest('li').className = this.closest('li').className.replace('editing', ''); }" onblur="if (this.getAttribute('data-esc') !== null) { return this.removeAttribute('data-esc'); } this.form.submit();">
+							<% if (filter) { %>
+							<input type="hidden" name="filter" value="<%= filter %>"/>
+							<% } %>
+							<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+						</form>
+						<form id="delete-<%= todo.id %>" action="<%= todo.url %>/delete" method="post">
+							<% if (filter) { %>
+							<input type="hidden" name="filter" value="<%= filter %>"/>
+							<% } %>
+							<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+						</form>
+					</li>
+					<% }); %>
+				</ul>
+			</section>
+			<% } %>
+			<% if (activeCount + completedCount > 0) { %>
+			<footer class="footer">
+				<span class="todo-count"><strong><%= activeCount %></strong> <%= pluralize('item', activeCount) %> left</span>
+				<ul class="filters">
+					<li>
+						<a <%- !filter ? 'class="selected"' : '' %> href="/">All</a>
+					</li>
+					<li>
+						<a <%- filter == 'active' ? 'class="selected"' : '' %> href="/active">Active</a>
+					</li>
+					<li>
+						<a <%- filter == 'completed' ? 'class="selected"' : '' %> href="/completed">Completed</a>
+					</li>
+				</ul>
+				<% if (completedCount > 0) { %>
+				<form action="/clear-completed" method="post">
+					<button class="clear-completed">Clear completed</button>
+					<% if (filter) { %>
+					<input type="hidden" name="filter" value="<%= filter %>"/>
+					<% } %>
+					<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+				</form>
+				<% } %>
+			</footer>
+			<% } %>
+		</section>
+		<footer class="info">
+			<p>Double-click to edit a todo</p>
+			<p>Created by <a href="https://www.jaredhanson.me">Jared Hanson</a></p>
+			<p>Part of <a href="https://todomvc.com">TodoMVC</a></p>
+			<p>Authentication powered by <a href="https://www.passportjs.org">Passport</a></p>
+		</footer>
+	</body>
 </html>
